@@ -1,0 +1,84 @@
+# Who am I?
+
+* Developer for Lab305
+* Ultrarunner
+* Bearded guy
+
+# What is Salt
+
+it's a super cool program
+
+# Installing Salt
+
+https://salt.readthedocs.org/en/latest/topics/installation/index.html
+
+```
+$ echo deb http://ppa.launchpad.net/saltstack/salt/ubuntu `lsb_release -sc` main | sudo tee /etc/apt/sources.list.d/saltstack.list
+$ wget -q -O- "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x4759FA960E27C0A6" | sudo apt-key add -
+
+$ sudo apt-get update
+```
+
+# Configuring Salt
+
+Edit the minion config file ``/etc/salt/minion`` to point to the salt master. In this example we are only using one machine so, the Master is also the minion.
+
+Lets set the master to the ``hostname`` of our machine.
+
+```
+# Set the location of the salt master server, if the master server cannot be
+# resolved, then the minion will fail to start.
+master: precise64
+```
+
+And now restart the salt minion:
+
+```
+sudo /etc/init.d/salt-minion restart
+```
+
+Now our minion and master are setup we need to have them exchange keys so they can talk to eachother.
+
+To view the list of keys for a salt master run:
+
+```
+# salt-key -L
+Accepted Keys:
+Unaccepted Keys:
+precise64
+Rejected Keys:
+```
+
+Lets accept the hey:
+
+```
+# salt-key -A
+```
+
+Now lets test the communication between the master and minion:
+
+```
+# salt '*' test.ping
+precise64:
+    True
+```
+
+# Salt States
+
+To manage the "state" of a minion, we need to set up the SLS system.
+
+Edit your ``/etc/salt/master`` config file.
+
+Uncomment the ``file_roots`` setting and make it look like:
+
+```
+file_roots:
+  base:
+    - /srv/salt
+    - /srv/salt/states
+```
+
+
+
+
+
