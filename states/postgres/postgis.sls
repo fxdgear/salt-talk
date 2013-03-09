@@ -25,5 +25,5 @@ postgis-template:
     - require:
       - pkg: postgis-packages
       - file: postgis-template
-      - pkg: postgres
+      - pkg: postgresql
       - cmd: /var/lib/postgresql/configure_utf-8.sh
