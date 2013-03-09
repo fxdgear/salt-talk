@@ -16,7 +16,7 @@ postgresql:
 
   file.managed:
     - name: /var/lib/postgresql/configure_utf-8.sh
-    - source: salt://postgresql/configure-locale.sh
+    - source: salt://postgres/configure-locale.sh
     - user: postgres
     - group: postgres
     - mode: 755

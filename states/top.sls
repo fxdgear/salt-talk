@@ -1,4 +1,4 @@
 base:
   '*':
     - http
-    - postgres
+    - postgres.postgis
