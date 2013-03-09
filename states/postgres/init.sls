@@ -1,4 +1,4 @@
-postgresql:
+postgres:
   pkg:
     - installed
   service.running:
