@@ -78,6 +78,9 @@ file_roots:
     - /srv/salt/states
 ```
 
+Now we need to add our states. Please see the repo for this talk for an example of some salt states. https://github.com/fxdgear/salt-talk
+
+To install all our packages, lets run ``salt '*' state.highstate``. This could take a while depending on your internet connection.
 
 
 
