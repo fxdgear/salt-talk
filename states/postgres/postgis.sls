@@ -1,5 +1,5 @@
 include:
-  - postgresql
+  - postgres
 
 postgis-packages:
   pkg.installed:
