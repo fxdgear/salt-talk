@@ -8,7 +8,7 @@ include:
     - no_site_packages: True
     - requirements: /home/django/treadhub.com/src/leadville/requirements.txt
     - require:
-      - git: https://github.com/fxdgear/leadville.git
+      - git: git@github.com:fxdgear/leadville.git
       - pip: virtualenvwrapper
       - user: django
 
