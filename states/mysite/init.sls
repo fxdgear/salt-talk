@@ -6,7 +6,7 @@ include:
 /var/www/treadhub.com:
   virtualenv.managed:
     - no_site_packages: True
-    - requirements: /home/django/treadhub.com/src/leadville/requirements.txt
+    - requirements: /home/django/treadhub.com/src/requirements.txt
     - require:
       - git: git@github.com:fxdgear/leadville.git
       - pip: virtualenvwrapper
