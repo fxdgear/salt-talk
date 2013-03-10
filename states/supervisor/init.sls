@@ -11,7 +11,7 @@ supervisor:
 
 /etc/supervisord.conf:
   file.managed:
-    - source: salt://files/supervisord.conf
+    - source: salt://supervisor/supervisord.conf
     - user: root
     - group: root
     - mode: 644
