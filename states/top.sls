@@ -5,3 +5,4 @@ base:
     - core
     - version-control
     - python
+    - supervisor
