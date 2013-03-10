@@ -1,6 +1,7 @@
 include:
   - mysite.users
   - mysite.code
+  - mysite.database
   - python
 
 /home/django/treadhub.com:
@@ -11,4 +12,6 @@ include:
       - git: git@github.com:fxdgear/leadville.git
       - pip: virtualenvwrapper
       - user: django
+      - postgres_database: treadhub
+
 
