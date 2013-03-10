@@ -4,3 +4,4 @@ base:
     - postgres.postgis
     - core
     - version-control
+    - python
