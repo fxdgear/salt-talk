@@ -3,7 +3,7 @@ include:
   - mysite.code
   - python
 
-/var/www/treadhub.com:
+/home/django/treadhub.com:
   virtualenv.managed:
     - no_site_packages: True
     - requirements: /home/django/treadhub.com/src/requirements.txt
