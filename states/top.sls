@@ -6,3 +6,6 @@ base:
     - version-control
     - python
     - supervisor
+    - redis
+    - memcached
+
