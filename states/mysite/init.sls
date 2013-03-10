@@ -1,5 +1,6 @@
 include:
-  - mysite
+  - mysite.users
+  - mysite.code
   - python
 
 /var/www/treadhub.com:
@@ -8,7 +9,6 @@ include:
     - requirements: /home/django/treadhub.com/src/leadville/requirements.txt
     - require:
       - git: https://github.com/fxdgear/leadville.git
-
       - pip: virtualenvwrapper
       - user: django
 
