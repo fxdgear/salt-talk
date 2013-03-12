@@ -5,6 +5,6 @@ include:
 git@github.com:fxdgear/leadville.git:
   git.latest:
     - rev: master
-    - target: /home/django/treadhub.com/src/
+    - target: /home/django/treadhub.com/src/leadville
     - require:
       - pkg: git-core
