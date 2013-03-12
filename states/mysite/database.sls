@@ -5,7 +5,7 @@ django-user:
   cmd.run:
     - name: psql -c "CREATE ROLE django SUPERUSER LOGIN PASSWORD 'password'"
     - user: postgres
-    - unless: psql -U postgres -c 'SELECT rolname FROM pg_roles;'|grep "vagrant"
+    - unless: psql -U postgres -c 'SELECT rolname FROM pg_roles;'|grep "django"
     - require:
       - postgres_database: django-db
 
