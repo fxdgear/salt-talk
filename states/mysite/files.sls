@@ -15,6 +15,7 @@ include:
         user_name: "django"
         domain: "treadhub"
     - require:
+      - file: /home/django/treadhub.com/src/leadville/apache/mysite.wsgi
       - file: apache_log
 
 apache_log:
@@ -22,7 +23,7 @@ apache_log:
     - name: /var/log/apache2/treadhub.com/error.log
     - user: django
 
-/home/django/code/treadhub.com/src/leadville/treadhub.wsgi:
+/home/django/treadhub.com/src/leadville/apache/mysite.wsgi:
   file.managed:
     - source: salt://mysite/mysite.wsgi
     - user: django
@@ -35,7 +36,5 @@ apache_log:
     - defaults:
         user_name: "django"
         domain: "treadhub"
-    - require:
-      - virtualenv: /home/django/treadhub.com
 
 
