@@ -2,8 +2,8 @@ import os
 import sys
 import site
 
-PROJECT_ROOT = '/home/{{user_name}}/code/{{domain}}.com/src/leadville'
-site_packages = '/home/{{user_name}}/code/{{domain}}.com/lib/python2.7/site-packages'
+PROJECT_ROOT = '/home/{{user_name}}/{{domain}}.com/src/leadville'
+site_packages = '/home/{{user_name}}/{{domain}}.com/lib/python2.7/site-packages'
 
 site.addsitedir(os.path.abspath(site_packages))
 sys.path.insert(0, PROJECT_ROOT)
