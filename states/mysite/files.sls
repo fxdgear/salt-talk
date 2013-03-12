@@ -6,8 +6,8 @@
     - mode: 644
     - template: jinja
     - context:
-        username: "django"
+        user_name: "django"
         domain: "treadhub"
     - defaults:
-        custom_var: "django"
-        other_var: "treadhub"
+        user_name: "django"
+        domain: "treadhub"
