@@ -3,6 +3,7 @@ include:
   - mysite.code
   - mysite.database
   - python
+  - mysite.files
 
 /home/django/treadhub.com:
   virtualenv.managed:
@@ -13,5 +14,6 @@ include:
       - pip: virtualenvwrapper
       - user: django
       - postgres_database: treadhub
+      - file: /etc/apache2/sites-enabled/mysite.conf
 
 
