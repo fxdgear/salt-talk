@@ -12,7 +12,7 @@
         user_name: "django"
         domain: "treadhub"
     - require:
-        file: apache_log
+      - file: apache_log
 
 
 apache_log:
