@@ -16,5 +16,5 @@ os.environ["CELERY_LOADER"] = "django"
 
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
-import newrelic.agent
-newrelic.agent.initialize('/home/{{user_name}}/code/{{domain}}.com/src/leadville/newrelic.ini')
+#import newrelic.agent
+#newrelic.agent.initialize('/home/{{user_name}}/code/{{domain}}.com/src/leadville/newrelic.ini')
