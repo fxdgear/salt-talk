@@ -36,7 +36,7 @@ apache_log:
     - defaults:
         user_name: "django"
         domain: "treadhub"
-    require:
+    - require:
       - file: /home/django/treadhub.com/src/leadville/autoroute/prod.py
 
 /home/django/treadhub.com/src/leadville/autoroute/prod.py:
