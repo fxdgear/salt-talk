@@ -11,3 +11,11 @@
     - defaults:
         user_name: "django"
         domain: "treadhub"
+    - require:
+        file: apache_log
+
+
+apache_log:
+  file.managed:
+    - name: /var/log/apache2/treadhub.com/error.log
+    - user: django
