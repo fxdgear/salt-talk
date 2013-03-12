@@ -37,4 +37,17 @@ apache_log:
         user_name: "django"
         domain: "treadhub"
 
+/home/django/treadhub.com/src/leadville/autoroute/prod.py:
+  file.managed:
+    - source: salt://mysite/prod.py
+    - user: django
+    - group: django
+    - mode: 644
+    - template: jinja
+    - context:
+        user_name: "django"
+        domain: "treadhub"
+    - defaults:
+        user_name: "django"
+        domain: "treadhub"
 
