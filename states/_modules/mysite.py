@@ -28,7 +28,7 @@ def collectstatic():
 def restart_apache():
     return __salt__['apache.signal']('restart')
 
-def restart_supervisor():
+def restart_supervisord():
     return __salt__['cmd.run']('service supervisord restart')
 
 def foo():
