@@ -25,11 +25,14 @@ def collectstatic():
     return __salt__['django.collectstatic'](
         SETTINGS, BIN_ENV, pythonpath=PYTHONPATH)
 
+
 def restart_apache():
     return __salt__['apache.signal']('restart')
+
 
 def restart_supervisord():
     return __salt__['cmd.run']('service supervisord restart')
 
-def foo():
-    return True
+
+def update_code():
+    return __salt__['git.pull']('/home/django/treadhub.com/src/leadville/')
