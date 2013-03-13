@@ -36,3 +36,7 @@ def restart_supervisord():
 
 def update_code():
     return __salt__['git.pull']('/home/django/treadhub.com/src/leadville/')
+
+
+def quick_deploy():
+    return update_code(), collectstatic(), restart_apache(), restart_supervisord()
