@@ -25,8 +25,11 @@ def collectstatic():
     return __salt__['django.collectstatic'](
         SETTINGS, BIN_ENV, pythonpath=PYTHONPATH)
 
-def restart():
+def restart_apache():
     return __salt__['apache.signal']('restart')
+
+def restart_supervisor():
+    return __salt__['cmd.run']('service supervisord restart')
 
 def foo():
     return True
