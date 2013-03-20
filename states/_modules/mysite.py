@@ -40,7 +40,7 @@ def update_code():
 
 
 def backup_db():
-    return __salt__['cmd.run']('pg_dump treadhub | gzip > $(date +"%Y-%m-%d").dump.gz')
+    return __salt__['cmd.run']('pg_dump treadhub | gzip > /tmp/$(date +"%Y-%m-%d").dump.gz')
 
 
 def quick_deploy():
