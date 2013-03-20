@@ -7,6 +7,7 @@ def syncdb():
     return __salt__['django.command'](
         SETTINGS, command, BIN_ENV, PYTHONPATH)
 
+
 def migrate():
     command = "migrate"
     SETTINGS = "autoroute.prod"
@@ -38,5 +39,14 @@ def update_code():
     return __salt__['git.pull']('/home/django/treadhub.com/src/leadville/')
 
 
+def backup_db():
+    return __salt__['cmd.run']('pg_dump treadhub | gzip > $(date +"%Y-%m-%d").dump.gz')
+
+
 def quick_deploy():
     return update_code(), collectstatic(), restart_apache(), restart_supervisord()
+
+
+def full_deploy():
+    return backup_db(), quick_deploy()
+
