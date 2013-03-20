@@ -45,6 +45,7 @@ def backup_db():
     runas = 'django'
     return __salt__['cmd.run'](cmd, cwd=cwd, runas=runas)
 
+
 def quick_deploy():
     return update_code(), collectstatic(), restart_apache(), restart_supervisord()
 
