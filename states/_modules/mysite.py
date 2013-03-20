@@ -40,8 +40,10 @@ def update_code():
 
 
 def backup_db():
-    return __salt__['cmd.run']('pg_dump treadhub | gzip > /tmp/$(date +"%Y-%m-%d").dump.gz')
-
+    cmd = 'pg_dump treadhub | gzip > /tmp/$(date +"%Y-%m-%d").dump.gz'
+    cwd = '/home/django'
+    runas = 'django'
+    return __salt__['cmd.run'](cmd, cwd=cwd, runas=runas)
 
 def quick_deploy():
     return update_code(), collectstatic(), restart_apache(), restart_supervisord()
