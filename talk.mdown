@@ -82,6 +82,31 @@ Now we need to add our states. Please see the repo for this talk for an example 
 
 To install all our packages, lets run ``salt '*' state.highstate``. This could take a while depending on your internet connection.
 
+# Salt Modules
+
+To run some commands that are frequently run we can create some modules.
+
+Modules are located in the ``_modules`` directory of our ``/srv/salt/states`` dir.
+
+To sync our modules to all the minions, run ``salt '*' saltutil.sync_modules``
+
+I've got created some modules here to handle some repetitive tasks.
+
+1. ``syncdb``
+2. ``migrate``
+3. ``collectstatic``
+4. ``restart_apache``
+5. ``restart_supervisord``
+6. ``update_code``
+7. ``backup_db``
+8. ``quick_deploy``
+9. ``full_deploy``
+
+I hope these are all pretty self explanitory, except maybe quick and full deploy.
+
+The quick is when there are no migrations, so we dont' migrate, and we don't backup the db.
+
+the full, is when there are migrations to be run, we can backup the DB first, run migrations then continue the deploy process.
 
 
 
