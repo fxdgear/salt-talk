@@ -37,9 +37,9 @@ apache_log:
         user_name: "django"
         domain: "mysite"
     - require:
-      - file: /home/django/mysite.com/src/mysite/prod.py
+      - file: /home/django/mysite.com/src/mysite/demo/prod.py
 
-/home/django/mysite.com/src/mysite/prod.py:
+/home/django/mysite.com/src/mysite/demo/prod.py:
   file.managed:
     - source: salt://mysite/prod.py
     - user: django
