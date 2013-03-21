@@ -10,20 +10,20 @@ include:
     - template: jinja
     - context:
         user_name: "django"
-        domain: "treadhub"
+        domain: "mysite"
     - defaults:
         user_name: "django"
-        domain: "treadhub"
+        domain: "mysite"
     - require:
-      - file: /home/django/treadhub.com/src/leadville/apache/mysite.wsgi
+      - file: /home/django/mysite.com/src/mysite/apache/mysite.wsgi
       - file: apache_log
 
 apache_log:
   file.managed:
-    - name: /var/log/apache2/treadhub.com/error.log
+    - name: /var/log/apache2/mysite.com/error.log
     - user: django
 
-/home/django/treadhub.com/src/leadville/apache/mysite.wsgi:
+/home/django/mysite.com/src/mysite/apache/mysite.wsgi:
   file.managed:
     - source: salt://mysite/mysite.wsgi
     - user: django
@@ -32,14 +32,14 @@ apache_log:
     - template: jinja
     - context:
         user_name: "django"
-        domain: "treadhub"
+        domain: "mysite"
     - defaults:
         user_name: "django"
-        domain: "treadhub"
+        domain: "mysite"
     - require:
-      - file: /home/django/treadhub.com/src/leadville/autoroute/prod.py
+      - file: /home/django/mysite.com/src/mysite/prod.py
 
-/home/django/treadhub.com/src/leadville/autoroute/prod.py:
+/home/django/mysite.com/src/mysite/prod.py:
   file.managed:
     - source: salt://mysite/prod.py
     - user: django
@@ -48,8 +48,8 @@ apache_log:
     - template: jinja
     - context:
         user_name: "django"
-        domain: "treadhub"
+        domain: "mysite"
     - defaults:
         user_name: "django"
-        domain: "treadhub"
+        domain: "mysite"
 
