@@ -1,6 +1,6 @@
 def syncdb():
     command = "syncdb"
-    SETTINGS = "mysite.prod"
+    SETTINGS = "demo.prod"
     BIN_ENV = "/home/django/mysite.com"
     PYTHONPATH = "/home/django/mysite.com/src/mysite/"
 
