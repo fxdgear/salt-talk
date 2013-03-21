@@ -1,6 +1,6 @@
 SETTINGS = "autoroute.prod"
-BIN_ENV = "/home/django/treadhub.com"
-PYTHONPATH = "/home/django/treadhub.com/src/leadville/"
+BIN_ENV = "/home/django/mysite.com"
+PYTHONPATH = "/home/django/mysite.com/src/mysite/"
 
 def run_command(command)
 

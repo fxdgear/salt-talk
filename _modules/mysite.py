@@ -1,8 +1,8 @@
 def syncdb():
     command = "syncdb"
-    SETTINGS = "autoroute.prod"
-    BIN_ENV = "/home/django/treadhub.com"
-    PYTHONPATH = "/home/django/treadhub.com/src/leadville/"
+    SETTINGS = "mysite.prod"
+    BIN_ENV = "/home/django/mysite.com"
+    PYTHONPATH = "/home/django/mysite.com/src/mysite/"
 
     return __salt__['django.command'](
         SETTINGS, command, BIN_ENV, PYTHONPATH)
@@ -11,8 +11,8 @@ def syncdb():
 def migrate():
     command = "migrate"
     SETTINGS = "autoroute.prod"
-    BIN_ENV = "/home/django/treadhub.com"
-    PYTHONPATH = "/home/django/treadhub.com/src/leadville/"
+    BIN_ENV = "/home/django/mysite.com"
+    PYTHONPATH = "/home/django/mysite.com/src/mysite/"
 
     return __salt__['django.command'](
         SETTINGS, command, BIN_ENV, PYTHONPATH)
@@ -20,8 +20,8 @@ def migrate():
 
 def collectstatic():
     SETTINGS = "autoroute.prod"
-    BIN_ENV = "/home/django/treadhub.com"
-    PYTHONPATH = "/home/django/treadhub.com/src/leadville/"
+    BIN_ENV = "/home/django/mysite.com"
+    PYTHONPATH = "/home/django/mysite.com/src/mysite/"
 
     return __salt__['django.collectstatic'](
         SETTINGS, BIN_ENV, pythonpath=PYTHONPATH)
@@ -36,11 +36,11 @@ def restart_supervisord():
 
 
 def update_code():
-    return __salt__['git.pull']('/home/django/treadhub.com/src/leadville/')
+    return __salt__['git.pull']('/home/django/mysite.com/src/mysite/')
 
 
 def backup_db():
-    cmd = 'pg_dump treadhub | gzip > /tmp/$(date +"%Y-%m-%d").dump.gz'
+    cmd = 'pg_dump demo | gzip > /tmp/$(date +"%Y-%m-%d").dump.gz'
     cwd = '/home/django'
     runas = 'django'
     return __salt__['cmd.run'](cmd, cwd=cwd, runas=runas)
