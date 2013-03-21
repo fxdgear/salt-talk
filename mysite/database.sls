@@ -16,9 +16,9 @@ django-db:
     - require:
       - cmd: /var/lib/postgresql/configure_utf-8.sh
 
-treadhub:
+demo:
     postgres_database.present:
-    - name: treadhub
+    - name: demo
     - runas: postgres
     - template: template_postgis
     - require:
