@@ -53,3 +53,5 @@ def quick_deploy():
 def full_deploy():
     return backup_db(), update_code(), migrate(), collectstatic(), restart_apache(), restart_supervisord()
 
+def ping():
+    return True
