@@ -10,7 +10,7 @@ include:
     - no_site_packages: True
     - requirements: /home/django/mysite.com/src/mysite/requirements.txt
     - require:
-      - git: git://github.com/andrewschoen/django-cms-demo.git
+      - git: git://github.com/fxdgear/django-cms-demo.git
       - pip: virtualenvwrapper
       - user: django
       - postgres_database: demo
