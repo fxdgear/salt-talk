@@ -52,4 +52,7 @@ apache_log:
     - defaults:
         user_name: "django"
         domain: "mysite"
+    - require:
+      - virtualenv: /home/django/mysite.com
+
 

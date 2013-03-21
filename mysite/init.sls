@@ -14,6 +14,5 @@ include:
       - pip: virtualenvwrapper
       - user: django
       - postgres_database: demo
-      - file: /etc/apache2/sites-enabled/mysite.conf
 
 
