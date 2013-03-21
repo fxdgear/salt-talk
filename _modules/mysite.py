@@ -10,7 +10,7 @@ def syncdb():
 
 def migrate():
     command = "migrate"
-    SETTINGS = "autoroute.prod"
+    SETTINGS = "demo.prod"
     BIN_ENV = "/home/django/mysite.com"
     PYTHONPATH = "/home/django/mysite.com/src/mysite/"
 
@@ -19,7 +19,7 @@ def migrate():
 
 
 def collectstatic():
-    SETTINGS = "autoroute.prod"
+    SETTINGS = "demo.prod"
     BIN_ENV = "/home/django/mysite.com"
     PYTHONPATH = "/home/django/mysite.com/src/mysite/"
 

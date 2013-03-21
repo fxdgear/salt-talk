@@ -9,7 +9,7 @@ site.addsitedir(os.path.abspath(site_packages))
 sys.path.insert(0, PROJECT_ROOT)
 sys.path.insert(1, os.path.join(PROJECT_ROOT))
 sys.path.insert(2, site_packages)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'autoroute.prod'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'demo.prod'
 os.environ['PYTHON_EGG_CACHE'] = '/home/{{user_name}}/.python-eggs'
 os.environ["CELERY_LOADER"] = "django"
 
