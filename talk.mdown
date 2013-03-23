@@ -110,4 +110,47 @@ The quick is when there are no migrations, so we dont' migrate, and we don't bac
 the full, is when there are migrations to be run, we can backup the DB first, run migrations then continue the deploy process.
 
 
+# Vagrant
+
+1. Install Vagrant
+2. Install Virtual Box
+3. Install Salty-Vagrant
+4. Get the Ubuntu 12.04 base box: vagrant box add precise64 http://files.vagrantup.com/precise64.box
+5. Create/Update your Vagrantfile
+
+
+Now if you're gonna use a the salt master to provision this vagrant vm, we should set our vagrant vm keys on the salt master.
+
+``
+root@saltmaster# salt-key --gen-keys=[minion_id]
+root@saltmaster# cp [minion_id].pub /etc/salt/pki/master/minions/[minion_id]
+``
+
+**Note** ``[minion_id]`` in this instance could be something like ``vagrant-demo``
+
+In the root of our project we should have a ``Vagrantfile`` and a ``salt`` directory.
+
+```
+mysite/
+    Vagrantfile
+    mysite/
+        app1/
+            models.py
+            views.py
+        settings.py
+        wsgi.py
+    salt/
+        minion.conf
+        key/
+            minion.pem
+            minion.pub
+```
+The keys we just created should be stored in the ``myvagrant/salt/key`` directory. This will allow our vagrant VM to auth against the salt master automatically.
+
+Now let ssetup our our dev env:
+
+``
+mkvirtualenv -a /home/vagrant -r /home/vagrant/mysite.com/src/mysite/requirements.txt mysite.com
+``
+
 
