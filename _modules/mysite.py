@@ -1,11 +1,10 @@
 def syncdb():
-    command = "syncdb"
     SETTINGS = "demo.prod"
     BIN_ENV = "/home/django/mysite.com"
     PYTHONPATH = "/home/django/mysite.com/src/mysite/"
 
-    return __salt__['django.command'](
-        SETTINGS, command, BIN_ENV, PYTHONPATH)
+    return __salt__['django.syncdb'](
+        SETTINGS, bin_env=BIN_ENV, pythonpath=PYTHONPATH)
 
 
 def migrate():
