@@ -248,10 +248,9 @@
 #     - /srv/salt/prod/services
 #     - /srv/salt/prod/states
 
-#file_roots:
-#  base:
-#    - /srv/salt/states
-
+file_roots:
+  base:
+    - /srv/salt/django-cms-demo/salt/states
 
 # The hash_type is the hash to use when discovering the hash of a file on
 # the master server, the default is md5, but sha1, sha224, sha256, sha384
@@ -290,14 +289,15 @@
 #  - roots
 # To use multiple backends list them in the order they are searched:
 fileserver_backend:
+  - roots
   - git
 
 # Git fileserver backend configuration
 # When using the git fileserver backend at least one git remote needs to be
 # defined. The user running the salt master will need read access to the repo.
 gitfs_remotes:
-  - git://github.com/fxdgear/salt-talk.git
-#  - file:///var/git/saltmaster
+  - git://github.com/Lab305/base-states.git
+#   - file:///var/git/saltmaster
 # The repos will be searched in order to find the file requested by a client
 # and the first repo to have the file will return it.
 # When using the git backend branches and tags are translated into salt
@@ -393,9 +393,9 @@ gitfs_remotes:
 # location. Remote logging works best when configured to use rsyslogd(8) (e.g.:
 # ``file:///dev/log``), with rsyslogd(8) configured for network logging. The URI
 # format is: <file|udp|tcp>://<host|socketpath>:<port-if-required>/<log-facility>
-#	log_file: /var/log/salt/master
-#	log_file: file:///dev/log
-#	log_file: udp://loghost:10514
+#log_file: /var/log/salt/master
+#log_file: file:///dev/log
+#log_file: udp://loghost:10514
 
 #log_file: /var/log/salt/master
 #key_logfile: /var/log/salt/key
@@ -414,7 +414,7 @@ gitfs_remotes:
 #log_datefmt_logfile: '%Y-%m-%d %H:%M:%S'
 
 # The format of the console logging messages. Allowed formatting options can
-# be seen here	http://docs.python.org/library/logging.html#logrecord-attributes
+# be seen here: http://docs.python.org/library/logging.html#logrecord-attributes
 #log_fmt_console: '[%(levelname)-8s] %(message)s'
 #log_fmt_logfile: '%(asctime)s,%(msecs)03.0f [%(name)-17s][%(levelname)-8s] %(message)s'
 
