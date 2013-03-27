@@ -18,24 +18,54 @@ $ wget -q -O- "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x4759
 
 $ sudo apt-get update
 $ sudo apt-get install salt
+$ sudo apt-get install salt-master salt-minion
 ```
 
 # Configuring Salt
 
-Edit the minion config file ``/etc/salt/minion`` to point to the salt master. In this example we are only using one machine so, the Master is also the minion.
+First lets configure our salt master.
 
-Lets set the master to the ``hostname`` of our machine.
+Edit ``/etc/salt/master`` and find the ``fileserver_backend`` setting. This setting is how we configure salt to use either the local file system (``roots``) or git as the file server back end. You can mix and match if you please. In fact I prefer to first use both.
 
 ```
-# Set the location of the salt master server, if the master server cannot be
-# resolved, then the minion will fail to start.
+fileserver_backend:
+  - roots
+  - git
+```
+
+What this is saying is that I'm going to be using the local file system as well as git as the file server backends. And it will first look in the local file system before looking at git.
+
+Next lets find the ``file_roots`` setting. The file roots setting is where we tell Salt to look for state files on the local file system. In my example we are setting it to
+
+```
+file_roots:
+  base:
+    - /srv/salt/django-cms-demo/salt/states
+```
+
+Now lets look for the ``gitfs_remotes`` setting. Here we can specify as many git repositories as we like.
+
+```
+gitfs_remotes:
+  - git://github.com/Lab305/base-states.git
+```
+
+So now lets recap. First we set the file server backend. Then we specified where each backend will look for files. The strategy I'm utilizing here will allow us to reuse a "base states" repo that I've created. This repo contains some basic stuff that gets used over and over again. Stuff like installing apache, postgres, creating a postgis template, etc. In the file_roots what I'm doing here is I have a django project named "django-cms-demo" in this project I have a directory called salt and in that directory I have another called states. This salt directory is important when we get into vagrant, but for now it's important that we check this repo out in the ``/srv/salt`` directory. We can configure the master to be a minion as well and manage this repo, to verify that when the repo gets updated this directory gets a fresh checkout.
+
+Now lets restart the master: ``# service salt-master restart``
+
+Next lets configure the minion. Edit the minion config file ``/etc/salt/minion`` to point to the salt master. In this example we are only using one machine so, the Master is also the minion.
+
+Lets set the master to the ``hostname`` of our machine. **Note**: the master can be any fqdn or ip address or hostname.
+
+```
 master: precise64
 ```
 
 And now restart the salt minion:
 
 ```
-sudo /etc/init.d/salt-minion restart
+# service salt-minion restart
 ```
 
 Now our minion and master are setup we need to have them exchange keys so they can talk to eachother.
@@ -50,7 +80,7 @@ precise64
 Rejected Keys:
 ```
 
-Lets accept the hey:
+Lets accept the key:
 
 ```
 # salt-key -A
@@ -66,30 +96,17 @@ precise64:
 
 # Salt States
 
-To manage the "state" of a minion, we need to set up the SLS system.
-
-Edit your ``/etc/salt/master`` config file.
-
-Uncomment the ``file_roots`` setting and make it look like:
-
-```
-file_roots:
-  base:
-    - /srv/salt
-    - /srv/salt/states
-```
-
-Now we need to add our states. Please see the repo for this talk for an example of some salt states. https://github.com/fxdgear/salt-talk
+In order to actually manage the state of a machine we need to push state to it. When we configured our Master previously we are using ``roots`` and ``git`` as our fileserver backends.
 
 To install all our packages, lets run ``salt '*' state.highstate``. This could take a while depending on your internet connection.
 
+Our states all depend on having a ``top.sls``. In our example the Top file is actually located in our projects repository, and references states that are located in base-states repository.
+
 # Salt Modules
 
-To run some commands that are frequently run we can create some modules.
+To execute commands that are run frequently, we can create some modules.
 
-Modules are located in the ``_modules`` directory of our ``/srv/salt/states`` dir.
-
-To sync our modules to all the minions, run ``salt '*' saltutil.sync_modules``
+Modules are located in the ``_modules`` directory. This directory can be in any of our "fileserver_backend" locations. IE in either the root level of our base-states repository or in the ``salt/states`` dir of our projet repository.
 
 I've got created some modules here to handle some repetitive tasks.
 
@@ -150,7 +167,17 @@ The keys we just created should be stored in the ``myvagrant/salt/key`` director
 Now let ssetup our our dev env:
 
 ``
+source /usr/local/bin/virtualenvwrapper.sh
 mkvirtualenv -a /home/vagrant -r /home/vagrant/mysite.com/src/mysite/requirements.txt mysite.com
 ``
+
+now lets run our website
+
+```
+cd /home/vagrant/mysite.com/mysite
+python manage.py runserver 0.0.0.0:8000 --settings=demo.prod
+```
+
+Note the ip address on this is important to access the runserver via the 2.3.4.10 address we have mapped on our Vagrantfile
 
 
